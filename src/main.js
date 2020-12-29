@@ -9,6 +9,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import HighchartsVue from 'highcharts-vue'
 import './assets/scss/main.scss'
+import store from './store';
 
 
 Vue.use(Vuex)
@@ -21,6 +22,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   vuetify,
   components: { App },
   template: '<App/>'

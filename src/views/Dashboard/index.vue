@@ -72,7 +72,8 @@
             <v-col cols="4" v-for="(sale, index) in titleSales" :key="index">
               <sales-overview
                 :title="sale"
-                :dataSales="dataSales[index]"
+                :dataSales="dataSalesOverview[index]"
+                :total="dataTotalSales[index]"
               ></sales-overview>
             </v-col>
 
@@ -136,6 +137,7 @@ export default {
     dateRangeText() {
       return this.dateRange.join(' to ')
     },
+    ...dashboard.mapGetters(['dataSalesOverview', 'dataTotalSales'])
   },
   methods: {
     ...dashboard.mapActions(['getSalesOverview'])
