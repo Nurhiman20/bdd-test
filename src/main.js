@@ -3,6 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import vuetify from '@/plugins/vuetify' // path to vuetify export
+import Vuex from 'vuex'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import HighchartsVue from 'highcharts-vue'
+
+
+Vue.use(Vuex)
+Vue.use(VueAxios, axios)
+Vue.use(HighchartsVue)
 
 Vue.config.productionTip = false
 
@@ -10,6 +20,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  vuetify,
   components: { App },
   template: '<App/>'
 })
