@@ -8,6 +8,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import HighchartsVue from 'highcharts-vue'
+import './assets/scss/main.scss'
 
 
 Vue.use(Vuex)

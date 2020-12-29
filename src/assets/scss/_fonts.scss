@@ -1,0 +1,38 @@
+@import 'variables';
+
+.app-title {
+  font-size: 28px;
+}
+
+.app-title-2 {
+  font-size: 22px;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-blue {
+  color: $blue;
+}
+
+.text-green {
+  color: $green;
+}
+
+.text-red {
+  color: $red;
+}
+
+.text-yellow {
+  color: $yellow;
+}
+
+.card-title {
+  font-size: 16px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: #999999;
+}
