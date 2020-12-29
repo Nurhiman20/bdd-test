@@ -68,11 +68,17 @@
       <v-row class="mt-8">
         <v-col cols="9">
           <v-row>
+            <!-- sales overview -->
             <v-col cols="4" v-for="(sale, index) in titleSales" :key="index">
               <sales-overview
                 :title="sale"
                 :dataSales="dataSales[index]"
               ></sales-overview>
+            </v-col>
+
+            <!-- line chart -->
+            <v-col cols="12">
+              <line-chart :series="dataAkhirTahun" class=""></line-chart>
             </v-col>
           </v-row>
         </v-col>
@@ -84,12 +90,20 @@
 
 <script>
 import salesOverview from './components/SalesOverview'
+import lineChart from '@/components/lineChart'
+import { createNamespacedHelpers } from 'vuex'
+
+const dashboard = createNamespacedHelpers('dashboard')
 
 export default {
   components: {
-    salesOverview
+    salesOverview,
+    lineChart
   },
   data: () => ({
+    dataAkhirTahun: [
+      { data: [1,2,3], color: '#FEB228' }, { data: [3,4,5], color: '#3480FA' }
+    ],
     dateRange: ['2019-09-10', '2019-09-20'],
     profileMenu: [
       { title: 'Profile' },
@@ -122,6 +136,12 @@ export default {
     dateRangeText() {
       return this.dateRange.join(' to ')
     },
+  },
+  methods: {
+    ...dashboard.mapActions(['getSalesOverview'])
+  },
+  created() {
+    this.getSalesOverview()
   },
 }
 </script>
