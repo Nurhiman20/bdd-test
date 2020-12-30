@@ -79,7 +79,12 @@
 
             <!-- line chart -->
             <v-col cols="12">
-              <line-chart :series="dataLineChart" :categories="xAxisLineChart" class="mt-3"></line-chart>
+              <line-chart :series="dataChart" :categories="xAxisChart" class="mt-3"></line-chart>
+            </v-col>
+            
+            <!-- bar chart -->
+            <v-col cols="12">
+              <bar-chart :series="dataChart" :categories="xAxisChart" class="mt-6"></bar-chart>
             </v-col>
           </v-row>
         </v-col>
@@ -92,6 +97,7 @@
 <script>
 import salesOverview from './components/SalesOverview'
 import lineChart from '@/components/lineChart'
+import barChart from '@/components/barChart'
 import * as moment from 'moment'
 import { createNamespacedHelpers } from 'vuex'
 
@@ -100,13 +106,11 @@ const dashboard = createNamespacedHelpers('dashboard')
 export default {
   components: {
     salesOverview,
-    lineChart
+    lineChart,
+    barChart
   },
   data: () => ({
-    dataAkhirTahun: [
-      { data: [1,2,3], color: '#FEB228' }, { data: [3,4,5], color: '#3480FA' }
-    ],
-    dateRange: ['2019-10-01', '2019-10-30'],
+    dateRange: ['2019-10-01', '2019-10-10'],
     profileMenu: [
       { title: 'Profile' },
       { title: 'Logout' }
@@ -145,7 +149,7 @@ export default {
     dateRangeText() {
       return this.dateRange.join(' to ')
     },
-    ...dashboard.mapGetters(['dataSalesOverview', 'dataTotalSales', 'dataLineChart', 'xAxisLineChart'])
+    ...dashboard.mapGetters(['dataSalesOverview', 'dataTotalSales', 'dataChart', 'xAxisChart'])
   },
   watch: {
     dateRangeFormatted(val) {

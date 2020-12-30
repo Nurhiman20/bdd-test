@@ -16,10 +16,7 @@ const dataTotalSales = (state) => {
   return total
 }
 
-let dateStartIndex = null
-let dateEndIndex = null
-
-const dataLineChart = (state) => {
+const dataChart = (state) => {
   // make series array base on highchart format
   let series = [{
     data: []
@@ -41,7 +38,7 @@ const dataLineChart = (state) => {
   return filteredSeries
 }
 
-const xAxisLineChart = (state) => {
+const xAxisChart = (state) => {
   // make xAxis array base on highchart format
   let xAxis = []
   state.dataChart.forEach(item => {
@@ -61,6 +58,6 @@ const xAxisLineChart = (state) => {
 export default {
   dataSalesOverview,
   dataTotalSales,
-  dataLineChart,
-  xAxisLineChart
+  dataChart,
+  xAxisChart
 }
