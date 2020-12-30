@@ -1,8 +1,3 @@
-import Vue from 'vue'
-import axios from 'axios'
-
-Vue.use(axios)
-
 const getSalesOverview = ({ commit }) => {
   return new Promise((resolve, reject) => {
     import("@/data/sales-overview.json")
