@@ -1,7 +1,6 @@
 <template>
   <div>
-    <v-card 
-      outlined
+    <v-card
       class="pa-3"
     >
       <div class="card-subtitle d-flex flex-row align-center">

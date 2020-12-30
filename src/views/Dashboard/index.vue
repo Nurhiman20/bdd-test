@@ -88,7 +88,10 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="3"></v-col>
+        <v-col cols="3">
+          <summary-report></summary-report>
+          <donut-chart class="mt-1"></donut-chart>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -96,8 +99,10 @@
 
 <script>
 import salesOverview from './components/SalesOverview'
+import summaryReport from './components/SummaryReport'
 import lineChart from '@/components/lineChart'
 import barChart from '@/components/barChart'
+import donutChart from '@/components/donutChart'
 import * as moment from 'moment'
 import { createNamespacedHelpers } from 'vuex'
 
@@ -106,8 +111,10 @@ const dashboard = createNamespacedHelpers('dashboard')
 export default {
   components: {
     salesOverview,
+    summaryReport,
     lineChart,
-    barChart
+    barChart,
+    donutChart
   },
   data: () => ({
     dateRange: ['2019-10-01', '2019-10-10'],
