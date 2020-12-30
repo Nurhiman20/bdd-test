@@ -3,7 +3,10 @@ import mutations from './mutations'
 import getters from './getters'
 
 const state = {
-  salesOverview: {}
+  salesOverview: {},
+  dataChart: [],
+  dateStartIndex: null,
+  dateEndIndex: null
 }
 
 export default {

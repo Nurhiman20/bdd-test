@@ -8,7 +8,7 @@
 import { Chart } from 'highcharts-vue'
 
 export default {
-  props: ['series'],
+  props: ['series', 'categories'],
   components: {
     highcharts: Chart
   },
@@ -17,6 +17,7 @@ export default {
       return {
         series: this.series,
         title: '',
+        xAxis: { categories: this.categories },
         yAxis: {
           title: {
             text: ''

@@ -16,7 +16,51 @@ const dataTotalSales = (state) => {
   return total
 }
 
+let dateStartIndex = null
+let dateEndIndex = null
+
+const dataLineChart = (state) => {
+  // make series array base on highchart format
+  let series = [{
+    data: []
+  }]
+
+  state.dataChart.forEach(item => {
+    series[0].data.push(item[1])
+  });
+
+  // filter by date
+  let filteredSeries = [{
+    data: []
+  }]
+
+  for (let index = state.dateStartIndex; index < state.dateEndIndex + 1; index++) {
+    filteredSeries[0].data.push(state.dataChart[index])
+  }
+
+  return filteredSeries
+}
+
+const xAxisLineChart = (state) => {
+  // make xAxis array base on highchart format
+  let xAxis = []
+  state.dataChart.forEach(item => {
+    xAxis.push(item[0])
+  });
+
+  // filter by date
+  let filteredX = []
+
+  for (let index = state.dateStartIndex; index < state.dateEndIndex + 1; index++) {
+    filteredX.push(xAxis[index])
+  }
+
+  return filteredX
+}
+
 export default {
   dataSalesOverview,
-  dataTotalSales
+  dataTotalSales,
+  dataLineChart,
+  xAxisLineChart
 }

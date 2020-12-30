@@ -79,7 +79,7 @@
 
             <!-- line chart -->
             <v-col cols="12">
-              <line-chart :series="dataAkhirTahun" class=""></line-chart>
+              <line-chart :series="dataLineChart" :categories="xAxisLineChart" class="mt-3"></line-chart>
             </v-col>
           </v-row>
         </v-col>
@@ -92,6 +92,7 @@
 <script>
 import salesOverview from './components/SalesOverview'
 import lineChart from '@/components/lineChart'
+import * as moment from 'moment'
 import { createNamespacedHelpers } from 'vuex'
 
 const dashboard = createNamespacedHelpers('dashboard')
@@ -105,7 +106,7 @@ export default {
     dataAkhirTahun: [
       { data: [1,2,3], color: '#FEB228' }, { data: [3,4,5], color: '#3480FA' }
     ],
-    dateRange: ['2019-09-10', '2019-09-20'],
+    dateRange: ['2019-10-01', '2019-10-30'],
     profileMenu: [
       { title: 'Profile' },
       { title: 'Logout' }
@@ -130,20 +131,40 @@ export default {
         color: 'text-yellow'
       }
     ],
-    dataSales: ['29.100.134', '2.721.000', '1.306.000'],
     dateMenu: false
   }),
   computed: {
+    dateRangeFormatted() {
+      let formatted = []
+      this.dateRange.forEach(element => {
+        formatted.push(moment(element).format('DD MMM YYYY'))
+      });
+
+      return formatted
+    },
     dateRangeText() {
       return this.dateRange.join(' to ')
     },
-    ...dashboard.mapGetters(['dataSalesOverview', 'dataTotalSales'])
+    ...dashboard.mapGetters(['dataSalesOverview', 'dataTotalSales', 'dataLineChart', 'xAxisLineChart'])
+  },
+  watch: {
+    dateRangeFormatted(val) {
+      if (val.length === 2) {
+        this.SET_FILTER_DATE(val)
+        this.getDataChart()
+      }
+    }
   },
   methods: {
-    ...dashboard.mapActions(['getSalesOverview'])
+    ...dashboard.mapActions(['getSalesOverview', 'getDataChart']),
+    ...dashboard.mapMutations(['SET_FILTER_DATE'])
   },
   created() {
     this.getSalesOverview()
+    this.getDataChart()
+      .then(result => {
+        this.SET_FILTER_DATE(this.dateRangeFormatted)
+      })
   },
 }
 </script>

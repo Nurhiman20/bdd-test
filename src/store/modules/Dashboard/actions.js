@@ -16,6 +16,20 @@ const getSalesOverview = ({ commit }) => {
   });
 }
 
+const getDataChart = ({ commit }) => {
+  return new Promise((resolve, reject) => {
+    import("@/data/year-end(single-client).json")
+      .then(result => {
+        commit("SET_DATA_CHART", result.data)
+        resolve(true)
+      })
+      .catch(error => {
+        reject(new Error("error"))
+      })
+  });
+}
+
 export default {
-  getSalesOverview
+  getSalesOverview,
+  getDataChart
 }
